@@ -1,0 +1,53 @@
+ang3d_picture 5 5 135 95
+ang3d_origin 70 50 3.05 0.4
+ang3d_unit 1
+
+background 0 0 0
+
+point M 1 1 100 100
+getx m M
+
+point T 0 0 6.28 6.28
+getx t T
+
+expression mod { m - floor(m/2)*2 }
+expression over_z { m*(6.28 / 100) }
+
+ang3d_origin 70 50 over_z 0.4
+color 200 20 10
+
+number pi8 0.3925
+number pi4 0.785
+number pi2 1.57
+
+expression r { 
+ite ( t <= pi8 , t/pi8 , 
+ite ( t <= pi4 , 1 - ((t - pi8)/(pi4 - pi8)) , 
+ite ( t <= 3*pi8 , (t - pi4)/(3*pi8 - pi4), 
+ite ( t <= pi2 , 1 - (t - 3*pi8)/(pi2 - 3*pi8),
+ite ( t <= 5*pi8 , (t - pi2)/(5*pi8 - pi2), 
+ite ( t <= 3*pi4 , 1 - (t - 5*pi8)/(3*pi4 - 5*pi8),
+ite ( t <= 7*pi8 , (t - 3*pi4)/(7*pi8 - 3*pi4), 
+ite ( t <= 3.14 , 1 - (t - 7*pi8)/(3.14 - 7*pi8),
+ite ( t <= 9*pi8 , (t - 3.14)/(9*pi8 - 3.14), 
+ite ( t <= 5*pi4 , 1 - (t - 9*pi8)/(5*pi4 - 9*pi8),
+ite ( t <= 11*pi8 , (t - 5*pi4)/(11*pi8 - 5*pi4), 
+ite ( t <= 3*pi2 , 1 - (t - 11*pi8)/(3*pi2 - 11*pi8),
+ite ( t <= 13*pi8 , (t - 3*pi2)/(13*pi8 - 3*pi2), 
+ite ( t <= 7*pi4 , 1 - (t - 13*pi8)/(7*pi4 - 13*pi8),
+ite ( t <= 15*pi8 , (t - 7*pi4)/(15*pi8 - 7*pi4), 1 - (t - 15*pi8)/(6.28 - 15*pi8) )))))))))))))))
+}
+
+ang3d_draw_parametric_surface u v { 0; u < 6.29; u + 0.1 } { 0; v < 3.15; v + 0.1 } { 
+r*2*sin(v)*(15*sin(u) - 4*sin(3*u)) + (1-r)*2*sin(v)*(16*sin(u) - 2*sqrt(3)*sin(3*u));
+r*(16*cos(v)) + (1-r)*18*cos(v);
+r*(2*sin(v)*(15*cos(u) - 6*cos(2*u) - 2*cos(3*u)) + 5) + (1-r)*(2*sin(v)*(12*cos(u) - 5*cos(2*u) - sqrt(3)*cos(3*u) - (1/2)*cos(4*u)) + 5)
+}
+
+animation_frames 100 10
+
+
+
+
+
+
