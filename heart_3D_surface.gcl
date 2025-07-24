@@ -29,10 +29,3 @@ r*(2*sin(v)*(15*cos(u) - 6*cos(2*u) - 2*cos(3*u)) + 5) + (1-r)*(2*sin(v)*(12*cos
 }
 
 animation_frames 100 10
-
-
-
-
-
-
-
